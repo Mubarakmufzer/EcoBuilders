@@ -1,0 +1,21 @@
+{% extends 'myapp/staff_base.html' %}
+{% load static %}
+{% block title %}Ask Customer{% endblock %}
+{% block body %}
+<center>
+    <h1>Ask Customer</h1>
+    <div class="container">
+        <form role="form" name="frm" action="{% url 'staff_message_add' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" class="form-control" id="user2_id" name="user2_id" value="{{ user2_id }}">
+            <div class="form-group">
+                <label for="msg">Message:</label>
+                <textarea class="form-control" name="msg" id="msg"></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-danger" id="btn-submit" name="btn-submit" title="Submit">Ask</button>
+            <button type="reset" class="btn btn-outline-dark" id="btn-clear" name="btn-clear" title="Clear">Clear</button>
+        </form>
+    </div>
+    <h3>{{ msg }}</h3>
+</center>
+{% endblock %}

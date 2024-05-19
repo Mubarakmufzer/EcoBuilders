@@ -1,0 +1,47 @@
+{% extends 'myapp/staff_base.html' %}
+{% load static %}
+{% block title %}Work Reply{% endblock %}
+{% block body %}
+<center>
+    <h2><font color="#366092">Work Reply</font></h2>
+<div class="container">
+    <form name="frm"  role="form" action="{% url 'staff_quotation_reply_add' %}" method="post"
+        enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" class="form-control" id="quotation_id" name="quotation_id"
+                         value="{{quotation_id}}" required="required">
+            <div class="form-group">
+               <label for="remarks">remarks</label>
+               <textarea class="form-control" id="remarks" name="remarks"
+                         placeholder="remarks" required="required"></textarea>
+           </div>
+            <div class="form-group">
+               <label for="amt">amt</label>
+               <input type="text" class="form-control" id="amt" name="amt"
+                         placeholder="amt" required="required">
+           </div>
+            <div class="form-group">
+               <label for="amt_details">amt_details</label>
+               <textarea class="form-control" id="amt_details" name="amt_details"
+                         placeholder="amt_details" required="required"></textarea>
+           </div>
+         <div class="form-group">
+                <label for="esdt">Expected Start Date</label>
+                <input class="form-control" type="date" name="esdt" id="esdt">
+            </div>
+        <div class="form-group">
+                <label for="eedt">Expected Ending Date</label>
+                <input class="form-control" type="date" name="eedt" id="eedt">
+            </div>
+            <div class="form-group">
+                <label for="document">Document</label>
+                <input class="form-control" type="file" name="document" id="document">
+            </div>
+
+            <button type="submit" class="btn btn-outline-danger" id="bt" name="bt">Add</button>
+            <button type="reset" class="btn btn-outline-dark" id="rt" name="rt">Reset</button>
+        {{msg}}
+    </form>
+</div>
+</center>
+{% endblock %}

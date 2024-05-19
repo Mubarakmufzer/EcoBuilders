@@ -1,0 +1,22 @@
+{% extends 'myapp/admin_base.html' %}
+{% load static %}
+{% block title %}Update designation{% endblock %}
+{% block body %}
+<center>
+    <h2>Update Designation</h2>
+	<div class="container">
+    <form role="form" name="frm" action="{% url 'admin_designation_master_edit' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+			<label for="designation_name"> Category </label>
+	        <input class="form-control" type="text"  id="designation_name" name="designation_name" value="{{designation_name}}" required="required">
+		</div>
+	    <button type="submit" class="btn btn-info" id="bt" name="bt">Add</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+        <input type="hidden" name="d_id" value="{{d_id}}">
+	    </table>
+    </form>
+	{{msg}}
+	</div>
+</center>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}New Customer Registration{% endblock %}
+{% block body %}
+<script>
+function validateform(){
+var pin=document.frm.pin.value;
+var password=document.frm.pwd.value;
+var contact=document.frm.contact.value;
+if(password.length<6){
+  alert("Password must be at least 6 characters long.");
+  return false;
+  }
+else if(pin.length<6 || pin.length>6 ){
+  alert("Pin must be at least 6 characters long.");
+  return false;
+  }
+else if(contact.length<10 ||contact.length>10 ){
+  alert("Contact must be 10 characters long.");
+  return false;
+  }
+}
+</script>
+<body style="background-color:black">
+<center>
+	<br>
+    <h2>New User Registration</h2>
+	<div class="container">
+    <form role="form" name="frm" action="{% url 'customer_details_add' %}" method="post" onsubmit="return validateform()">
+        {% csrf_token %}
+        <div class="form-group">
+			<label for="fname">Name</label>
+	        <input class="form-control" type="text"  id="fname" name="fname" placeholder="First name" required="required"  onkeypress="return/^[A-Za-z]+$/i.test(event.key)">
+			<input class="form-control" type="text"  id="lname" name="lname" placeholder="Last name" required="required" onkeypress="return/^[A-Za-z]+$/i.test(event.key)">
+		</div>
+		<br>
+	    <div class="form-group">
+            <label>Gender :</label>
+			<div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" class="custom-control-input" id="gender1" name="gender" value="Male" checked="checked">
+  				<label class="custom-control-label" for="gender1">Male</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" class="custom-control-input" id="gender2" name="gender" value="Female">
+  				<label class="custom-control-label" for="gender2">Female</label>
+			</div>
+		</div>
+        <div class="form-group">
+			<label for="contact">Date of Birth</label>
+	        <input type="date"  class="form-control" id="dob" name="dob">
+		</div>
+
+	    <div class="form-group">
+			<label for="addr">Address</label>
+	        <input class="form-control" type="text"  id="addr" name="addr" placeholder="Street" >
+            <input type="text"  class="form-control" id="pin" name="pin" placeholder="pin" maxlength="6" onkeypress="return/[0-9]/i.test(event.key)">
+		</div>
+	    <div class="form-group">
+			<label for="contact">Contact</label>
+	        <input type="text"  class="form-control" id="contact" name="contact" placeholder="Enter contact" maxlength="10"  onkeypress="return/[0-9]/i.test(event.key)">
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label>
+	        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email id"></td>
+		</div>
+        <div class="form-group">
+			<label for="pwd">password</label>
+	        <input type="password" class="form-control" id="pwd" name="pwd"></td>
+		</div>
+		<br>
+	    <button type="submit" class="btn btn-danger" id="bt" name="bt">Register</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+	    </table>
+		<br>
+    </form>
+	<font color="red">{{msg}}</font>
+	</div>
+
+</center>
+</body>
+{% endblock %}

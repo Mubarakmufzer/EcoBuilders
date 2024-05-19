@@ -1,0 +1,24 @@
+{% extends 'myapp/staff_base.html' %}
+{% load static %}
+{% block title %}Work Reply{% endblock %}
+{% block body %}
+<center>
+    <h2><font color="#366092">Work Reply</font></h2>
+<div class="container">
+    <form name="frm"  role="form" action="{% url 'staff_quotation_details_add' %}" method="post"
+        enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" class="form-control" id="quotation_id" name="quotation_id"
+                         value="{{quotation_id}}" required="required">
+            <div class="form-group">
+               <label for="remarks">remarks</label>
+               <textarea class="form-control" id="remarks" name="remarks"
+                         placeholder="remarks" required="required"></textarea>
+           </div>
+            <button type="submit" class="btn btn-success" id="bt" name="bt">Add</button>
+            <button type="reset" class="btn btn-warning" id="rt" name="rt">Reset</button>
+        {{msg}}
+    </form>
+</div>
+</center>
+{% endblock %}

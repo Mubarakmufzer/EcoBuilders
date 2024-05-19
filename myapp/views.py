@@ -411,8 +411,8 @@ def staff_quotation_update(request):
     ed.status = status
     ed.save()
     ud = customer_details.objects.get(user_id=int(ed.user_id))
-    print(f'.............{ud.email}')
-    send_mail('Construction Company', f'Work order {ed.q_descp}  is  {status}' , ud.email)
+    #print(f'.............{ud.email}')
+    #send_mail('Construction Company', f'Work order {ed.q_descp}  is  {status}' , ud.email)
 
     pm_l = quotation_master.objects.filter(status='pending')
     category_list = category_master.objects.all()
@@ -432,7 +432,7 @@ def staff_quotation_pending_view(request):
     return render(request, 'myapp/staff_quotation_view.html', context)
 
 def staff_quotation_reject_view(request):
-    #user_id = request.session['user_id']
+   # user_id = request.session['user_id']
     pm_l = quotation_master.objects.filter(status='reject')
     category_list = category_master.objects.all()
     user_list = customer_details.objects.all()
@@ -441,7 +441,7 @@ def staff_quotation_reject_view(request):
     return render(request, 'myapp/staff_quotation_view.html', context)
 
 def staff_quotation_view(request):
-    #user_id = request.session['user_id']
+   # user_id = request.session['user_id']
     pm_l = quotation_master.objects.filter(status='approved')
     category_list = category_master.objects.all()
     user_list = customer_details.objects.all()
